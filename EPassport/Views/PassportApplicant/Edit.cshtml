@@ -1,0 +1,843 @@
+﻿@model EPassport.Models.PassportApplicant
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3> Edit Record of Applicant</h3>
+<br>
+<p style="text-align:center">Republic of the Philippines <br><strong>DEPARTMENT OF FOREIGN AFFAIRS</strong></p>
+<h3 style="text-align:center">PASSPORT APPLICATION FORM </h3>
+
+<br>
+<hr>
+<p style="text-align:justify">
+    Note: Please leave it blank if not applicable. Providing false statement in this application is punishable by Law (R.A. 8239).
+</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">Applicant Basic Information</div>
+            <div class="panel-body">
+                <br>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @*ROW-1*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("LAST NAME / Apelyido", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("FIRST NAME / Pangalan", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("MIDDLE NAME / Gitnang Pangalan", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(model => model.LastName, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.FirstName, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.MiddleName, new { style = "width:20em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*ROW-2*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("DATE OF BIRTH / Petsa ng kapanganakan", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("PLACE OF BIRTH / Pook ng kapanganakan", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("CIVIL STATUS", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(model => model.DateOfBirth, new { style = "width:20em;", @class = "datepicker" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.PlaceOfBirth, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.CivilStatus, new List<SelectListItem> {
+
+                             new SelectListItem { Text ="Single", Value = "Single"},
+                             new SelectListItem { Text ="Married", Value = "Married"},
+                             new SelectListItem { Text ="Widow", Value = "Widow"},
+                             new SelectListItem { Text ="Legally Separated", Value = "Legally Separated"},
+                             new SelectListItem { Text ="Annulled", Value = "Annulled"}
+
+
+                         }, "Select Status", new { style = "width:20em; height: 2em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.CivilStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*ROW-3*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("COMPLETE ADDRESS", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("TELEPHONE NUMBER", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("MOBILE NUMBER", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.TextAreaFor(model => model.CompleteAddress, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.TelephoneNumber, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.MobileNumber, new { style = "width:20em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.CompleteAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.TelephoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*ROW-4*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("PRESENT OCCUPATION", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("WORK ADDRESS", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("EMAIL ADDRESS", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(model => model.PresentOccupation, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.WorkAddress, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.EmailAddress, new { style = "width:20em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.PresentOccupation, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.WorkAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                @*ROW-5*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("NAME OF HUSBAND / WIFE", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("HUSBAND / WIFE'S CITIZENSHIP", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.NameofWifeorHusband, new { style = "width:30em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.Citizenship, new List<SelectListItem> {
+
+                           new SelectListItem { Text ="Afghan", Value = "Afghan"},
+                           new SelectListItem { Text ="Albanian", Value = "Albanian"},
+                           new SelectListItem { Text ="Algerian", Value = "Algerian"},
+                           new SelectListItem { Text ="Argentine", Value = "Argentine"},
+                           new SelectListItem { Text ="Australian", Value = "Australian"},
+                           new SelectListItem { Text ="Austrian", Value = "Austrian"},
+                           new SelectListItem { Text ="Bangladeshi", Value = "Bangladeshi"},
+                           new SelectListItem { Text ="Belgian", Value = "Belgian"},
+                           new SelectListItem { Text ="Bolivian", Value = "Bolivian"},
+                           new SelectListItem { Text ="Batswana", Value = "Batswana"},
+                           new SelectListItem { Text ="Brazilian", Value = "Brazilian"},
+                           new SelectListItem { Text ="Bulgarian", Value = "Bulgarian" },
+                           new SelectListItem { Text ="Cambodian", Value = "Cambodian"},
+                           new SelectListItem { Text ="Cameroonian", Value = "Cameroonian"},
+                           new SelectListItem { Text ="Canadian", Value = "Canadian"},
+                           new SelectListItem { Text ="Chilean", Value = "Chilean"},
+                           new SelectListItem { Text ="Chinese", Value = "Chinese"},
+                           new SelectListItem { Text ="Colombian", Value = "Colombian"},
+                           new SelectListItem { Text ="Costa Rican", Value = "Costa Rican"},
+                           new SelectListItem { Text ="Croatian", Value = "Croatian"},
+                           new SelectListItem { Text ="Cuban", Value = "Cuban"},
+                           new SelectListItem { Text ="Czech", Value = "Czech"},
+                           new SelectListItem { Text ="Danish", Value = "Danish"},
+                           new SelectListItem { Text ="Dominican", Value = "Dominican"},
+                           new SelectListItem { Text ="Ecuadorian", Value = "Ecuadorian"},
+
+                           new SelectListItem { Text ="Egyptian", Value = "Egyptian"},
+                           new SelectListItem { Text ="English", Value = "English"},
+                           new SelectListItem { Text ="Finnish", Value = "Finnish"},
+                           new SelectListItem { Text ="French", Value = "French"},
+                           new SelectListItem { Text ="German", Value = "German"},
+                           new SelectListItem { Text ="Greek", Value = "Greek"},
+                           new SelectListItem { Text ="Guatemalan", Value = "Guatemalan"},
+                           new SelectListItem { Text ="Haitian", Value = "Haitian"},
+                           new SelectListItem { Text ="Hungarian", Value = "Hungarian"},
+                           new SelectListItem { Text ="Indian", Value = "Indian"},
+                           new SelectListItem { Text ="Indonesian", Value = "Indonesian" },
+                           new SelectListItem { Text ="Iranian", Value = "Iranian"},
+                           new SelectListItem { Text ="Iraqi", Value = "Iraqi"},
+                           new SelectListItem { Text ="Irish", Value = "Irish"},
+                           new SelectListItem { Text ="Israeli", Value = "Israeli"},
+                           new SelectListItem { Text ="Italian", Value = "Italian"},
+                           new SelectListItem { Text ="Jamaican", Value = "Jamaican"},
+                           new SelectListItem { Text ="Japanese", Value = "Japanese"},
+                           new SelectListItem { Text ="Jordanian", Value = "Jordanian"},
+                           new SelectListItem { Text ="Kenyan", Value = "Kenyan"},
+                           new SelectListItem { Text ="Kuwaiti", Value = "Kuwaiti"},
+                           new SelectListItem { Text ="Lao", Value = "Lao"},
+                           new SelectListItem { Text ="Lebanese", Value = "Lebanese"},
+                           new SelectListItem { Text ="Libyan", Value = "Libyan"},
+
+
+                           new SelectListItem { Text ="Malaysian", Value = "Malaysian"},
+                           new SelectListItem { Text ="Mexican", Value = "Mexican"},
+                           new SelectListItem { Text ="Mongolian", Value = "Mongolian"},
+                           new SelectListItem { Text ="Moroccan", Value = "Moroccan"},
+                           new SelectListItem { Text ="Nepalese", Value = "Nepalese"},
+                           new SelectListItem { Text ="Dutch", Value = "Dutch"},
+                           new SelectListItem { Text ="New Zealand", Value = "New Zealand"},
+                           new SelectListItem { Text ="Nigerian", Value = "Nigerian"},
+                           new SelectListItem { Text ="Pakistani", Value = "Pakistani"},
+                           new SelectListItem { Text ="Paraguayan", Value = "Paraguayan"},
+                           new SelectListItem { Text ="Peruvian", Value = "Peruvian"},
+                           new SelectListItem { Text ="Filipino", Value = "Filipino" },
+                           new SelectListItem { Text ="Polish", Value = "Polish"},
+                           new SelectListItem { Text ="Portuguese", Value = "Portuguese"},
+                           new SelectListItem { Text ="Romanian", Value = "Romanian"},
+                           new SelectListItem { Text ="Russian", Value = "Russian"},
+                           new SelectListItem { Text ="Arabian", Value = "Arabian"},
+                           new SelectListItem { Text ="Scottish", Value = "Scottish"},
+                           new SelectListItem { Text ="Singaporean", Value = "Singaporean"},
+                           new SelectListItem { Text ="Slovak", Value = "Slovak"},
+                           new SelectListItem { Text ="South African", Value = "South African"},
+                           new SelectListItem { Text ="Korean", Value = "Korean"},
+                           new SelectListItem { Text ="Sri Lankan", Value = "Sri Lankan"},
+                           new SelectListItem { Text ="Swedish", Value = "Swedish"},
+
+                           new SelectListItem { Text ="Swiss", Value = "Swiss"},
+                           new SelectListItem { Text ="Syrian", Value = "Syrian"},
+                           new SelectListItem { Text ="Taiwanese", Value = "Taiwanese"},
+                           new SelectListItem { Text ="Tajikistani", Value = "Tajikistani"},
+                           new SelectListItem { Text ="Thai", Value = "Thai"},
+                           new SelectListItem { Text ="Turkish", Value = "Turkish"},
+                           new SelectListItem { Text ="Ukrainian", Value = "Ukrainian"},
+                           new SelectListItem { Text ="Emirati", Value = "Emirati"},
+                           new SelectListItem { Text ="British", Value = "British"},
+                           new SelectListItem { Text ="American", Value = "American "},
+                           new SelectListItem { Text ="Uruguayan", Value = "Uruguayan"},
+                           new SelectListItem { Text ="Venezuelan", Value = "Venezuelan" },
+                           new SelectListItem { Text ="Vietnamese", Value = "Vietnamese"},
+                           new SelectListItem { Text ="Zimbabwean", Value = "Zimbabwean"}
+
+                       }, "Select Citizenship", new { style = "width:20em; height: 2em;" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.NameofWifeorHusband, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.Citizenship, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">Applicant Parent's Information</div>
+            <div class="panel-body">
+                <br>
+
+                @*ROW-1*@
+                <div class="form-group center-block">
+                    <div class="col-md-6">
+                        @Html.Label("NAME OF FATHER", htmlAttributes: new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.NameOfFather, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("FATHER'S CITIZENSHIP", htmlAttributes: new { @class = "control-label " })
+                        @Html.DropDownListFor(model => model.FatherCitizenship, new List<SelectListItem> {
+
+                         new SelectListItem { Text ="Afghan", Value = "Afghan"},
+                         new SelectListItem { Text ="Albanian", Value = "Albanian"},
+                         new SelectListItem { Text ="Algerian", Value = "Algerian"},
+                         new SelectListItem { Text ="Argentine", Value = "Argentine"},
+                         new SelectListItem { Text ="Australian", Value = "Australian"},
+                         new SelectListItem { Text ="Austrian", Value = "Austrian"},
+                         new SelectListItem { Text ="Bangladeshi", Value = "Bangladeshi"},
+                         new SelectListItem { Text ="Belgian", Value = "Belgian"},
+                         new SelectListItem { Text ="Bolivian", Value = "Bolivian"},
+                         new SelectListItem { Text ="Batswana", Value = "Batswana"},
+                         new SelectListItem { Text ="Brazilian", Value = "Brazilian"},
+                         new SelectListItem { Text ="Bulgarian", Value = "Bulgarian" },
+                         new SelectListItem { Text ="Cambodian", Value = "Cambodian"},
+                         new SelectListItem { Text ="Cameroonian", Value = "Cameroonian"},
+                         new SelectListItem { Text ="Canadian", Value = "Canadian"},
+                         new SelectListItem { Text ="Chilean", Value = "Chilean"},
+                         new SelectListItem { Text ="Chinese", Value = "Chinese"},
+                         new SelectListItem { Text ="Colombian", Value = "Colombian"},
+                         new SelectListItem { Text ="Costa Rican", Value = "Costa Rican"},
+                         new SelectListItem { Text ="Croatian", Value = "Croatian"},
+                         new SelectListItem { Text ="Cuban", Value = "Cuban"},
+                         new SelectListItem { Text ="Czech", Value = "Czech"},
+                         new SelectListItem { Text ="Danish", Value = "Danish"},
+                         new SelectListItem { Text ="Dominican", Value = "Dominican"},
+                         new SelectListItem { Text ="Ecuadorian", Value = "Ecuadorian"},
+
+
+                         new SelectListItem { Text ="Egyptian", Value = "Egyptian"},
+                         new SelectListItem { Text ="English", Value = "English"},
+                         new SelectListItem { Text ="Finnish", Value = "Finnish"},
+                         new SelectListItem { Text ="French", Value = "French"},
+                         new SelectListItem { Text ="German", Value = "German"},
+                         new SelectListItem { Text ="Greek", Value = "Greek"},
+                         new SelectListItem { Text ="Guatemalan", Value = "Guatemalan"},
+                         new SelectListItem { Text ="Haitian", Value = "Haitian"},
+                         new SelectListItem { Text ="Hungarian", Value = "Hungarian"},
+                         new SelectListItem { Text ="Indian", Value = "Indian"},
+                         new SelectListItem { Text ="Indonesian", Value = "Indonesian" },
+                         new SelectListItem { Text ="Iranian", Value = "Iranian"},
+                         new SelectListItem { Text ="Iraqi", Value = "Iraqi"},
+                         new SelectListItem { Text ="Irish", Value = "Irish"},
+                         new SelectListItem { Text ="Israeli", Value = "Israeli"},
+                         new SelectListItem { Text ="Italian", Value = "Italian"},
+                         new SelectListItem { Text ="Jamaican", Value = "Jamaican"},
+                         new SelectListItem { Text ="Japanese", Value = "Japanese"},
+                         new SelectListItem { Text ="Jordanian", Value = "Jordanian"},
+                         new SelectListItem { Text ="Kenyan", Value = "Kenyan"},
+                         new SelectListItem { Text ="Kuwaiti", Value = "Kuwaiti"},
+                         new SelectListItem { Text ="Lao", Value = "Lao"},
+                         new SelectListItem { Text ="Lebanese", Value = "Lebanese"},
+                         new SelectListItem { Text ="Libyan", Value = "Libyan"},
+
+
+                         new SelectListItem { Text ="Malaysian", Value = "Malaysian"},
+                         new SelectListItem { Text ="Mexican", Value = "Mexican"},
+                         new SelectListItem { Text ="Mongolian", Value = "Mongolian"},
+                         new SelectListItem { Text ="Moroccan", Value = "Moroccan"},
+                         new SelectListItem { Text ="Nepalese", Value = "Nepalese"},
+                         new SelectListItem { Text ="Dutch", Value = "Dutch"},
+                         new SelectListItem { Text ="New Zealand", Value = "New Zealand"},
+                         new SelectListItem { Text ="Nigerian", Value = "Nigerian"},
+                         new SelectListItem { Text ="Pakistani", Value = "Pakistani"},
+                         new SelectListItem { Text ="Paraguayan", Value = "Paraguayan"},
+                         new SelectListItem { Text ="Peruvian", Value = "Peruvian"},
+                         new SelectListItem { Text ="Filipino", Value = "Filipino" },
+                         new SelectListItem { Text ="Polish", Value = "Polish"},
+                         new SelectListItem { Text ="Portuguese", Value = "Portuguese"},
+                         new SelectListItem { Text ="Romanian", Value = "Romanian"},
+                         new SelectListItem { Text ="Russian", Value = "Russian"},
+                         new SelectListItem { Text ="Arabian", Value = "Arabian"},
+                         new SelectListItem { Text ="Scottish", Value = "Scottish"},
+                         new SelectListItem { Text ="Singaporean", Value = "Singaporean"},
+                         new SelectListItem { Text ="Slovak", Value = "Slovak"},
+                         new SelectListItem { Text ="South African", Value = "South African"},
+                         new SelectListItem { Text ="Korean", Value = "Korean"},
+                         new SelectListItem { Text ="Sri Lankan", Value = "Sri Lankan"},
+                         new SelectListItem { Text ="Swedish", Value = "Swedish"},
+
+
+                         new SelectListItem { Text ="Swiss", Value = "Swiss"},
+                         new SelectListItem { Text ="Syrian", Value = "Syrian"},
+                         new SelectListItem { Text ="Taiwanese", Value = "Taiwanese"},
+                         new SelectListItem { Text ="Tajikistani", Value = "Tajikistani"},
+                         new SelectListItem { Text ="Thai", Value = "Thai"},
+                         new SelectListItem { Text ="Turkish", Value = "Turkish"},
+                         new SelectListItem { Text ="Ukrainian", Value = "Ukrainian"},
+                         new SelectListItem { Text ="Emirati", Value = "Emirati"},
+                         new SelectListItem { Text ="British", Value = "British"},
+                         new SelectListItem { Text ="American", Value = "American "},
+                         new SelectListItem { Text ="Uruguayan", Value = "Uruguayan"},
+                         new SelectListItem { Text ="Venezuelan", Value = "Venezuelan" },
+                         new SelectListItem { Text ="Vietnamese", Value = "Vietnamese"},
+                         new SelectListItem { Text ="Zimbabwean", Value = "Zimbabwean"}
+
+                         }, "Select Citizenship", new { style = "width:20em; height: 2em;" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(model => model.NameOfFather, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(model => model.FatherCitizenship, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*ROW-1*@
+
+                <div class="form-group center-block">
+                    <div class="col-md-6">
+                        @Html.Label("MOTHER'S MAIDEN NAME", htmlAttributes: new { @class = "control-label " })
+                        @Html.TextBoxFor(model => model.NameOfMother, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("MOTHER'S CITIZENSHIP", htmlAttributes: new { @class = "control-label " })
+                        @Html.DropDownListFor(model => model.MotherCitizenship, new List<SelectListItem> {
+
+                         new SelectListItem { Text ="Afghan", Value = "Afghan"},
+                         new SelectListItem { Text ="Albanian", Value = "Albanian"},
+                         new SelectListItem { Text ="Algerian", Value = "Algerian"},
+                         new SelectListItem { Text ="Argentine", Value = "Argentine"},
+                         new SelectListItem { Text ="Australian", Value = "Australian"},
+                         new SelectListItem { Text ="Austrian", Value = "Austrian"},
+                         new SelectListItem { Text ="Bangladeshi", Value = "Bangladeshi"},
+                         new SelectListItem { Text ="Belgian", Value = "Belgian"},
+                         new SelectListItem { Text ="Bolivian", Value = "Bolivian"},
+                         new SelectListItem { Text ="Batswana", Value = "Batswana"},
+                         new SelectListItem { Text ="Brazilian", Value = "Brazilian"},
+                         new SelectListItem { Text ="Bulgarian", Value = "Bulgarian" },
+                         new SelectListItem { Text ="Cambodian", Value = "Cambodian"},
+                         new SelectListItem { Text ="Cameroonian", Value = "Cameroonian"},
+                         new SelectListItem { Text ="Canadian", Value = "Canadian"},
+                         new SelectListItem { Text ="Chilean", Value = "Chilean"},
+                         new SelectListItem { Text ="Chinese", Value = "Chinese"},
+                         new SelectListItem { Text ="Colombian", Value = "Colombian"},
+                         new SelectListItem { Text ="Costa Rican", Value = "Costa Rican"},
+                         new SelectListItem { Text ="Croatian", Value = "Croatian"},
+                         new SelectListItem { Text ="Cuban", Value = "Cuban"},
+                         new SelectListItem { Text ="Czech", Value = "Czech"},
+                         new SelectListItem { Text ="Danish", Value = "Danish"},
+                         new SelectListItem { Text ="Dominican", Value = "Dominican"},
+                         new SelectListItem { Text ="Ecuadorian", Value = "Ecuadorian"},
+
+
+                         new SelectListItem { Text ="Egyptian", Value = "Egyptian"},
+                         new SelectListItem { Text ="English", Value = "English"},
+                         new SelectListItem { Text ="Finnish", Value = "Finnish"},
+                         new SelectListItem { Text ="French", Value = "French"},
+                         new SelectListItem { Text ="German", Value = "German"},
+                         new SelectListItem { Text ="Greek", Value = "Greek"},
+                         new SelectListItem { Text ="Guatemalan", Value = "Guatemalan"},
+                         new SelectListItem { Text ="Haitian", Value = "Haitian"},
+                         new SelectListItem { Text ="Hungarian", Value = "Hungarian"},
+                         new SelectListItem { Text ="Indian", Value = "Indian"},
+                         new SelectListItem { Text ="Indonesian", Value = "Indonesian" },
+                         new SelectListItem { Text ="Iranian", Value = "Iranian"},
+                         new SelectListItem { Text ="Iraqi", Value = "Iraqi"},
+                         new SelectListItem { Text ="Irish", Value = "Irish"},
+                         new SelectListItem { Text ="Israeli", Value = "Israeli"},
+                         new SelectListItem { Text ="Italian", Value = "Italian"},
+                         new SelectListItem { Text ="Jamaican", Value = "Jamaican"},
+                         new SelectListItem { Text ="Japanese", Value = "Japanese"},
+                         new SelectListItem { Text ="Jordanian", Value = "Jordanian"},
+                         new SelectListItem { Text ="Kenyan", Value = "Kenyan"},
+                         new SelectListItem { Text ="Kuwaiti", Value = "Kuwaiti"},
+                         new SelectListItem { Text ="Lao", Value = "Lao"},
+                         new SelectListItem { Text ="Lebanese", Value = "Lebanese"},
+                         new SelectListItem { Text ="Libyan", Value = "Libyan"},
+
+
+                         new SelectListItem { Text ="Malaysian", Value = "Malaysian"},
+                         new SelectListItem { Text ="Mexican", Value = "Mexican"},
+                         new SelectListItem { Text ="Mongolian", Value = "Mongolian"},
+                         new SelectListItem { Text ="Moroccan", Value = "Moroccan"},
+                         new SelectListItem { Text ="Nepalese", Value = "Nepalese"},
+                         new SelectListItem { Text ="Dutch", Value = "Dutch"},
+                         new SelectListItem { Text ="New Zealand", Value = "New Zealand"},
+                         new SelectListItem { Text ="Nigerian", Value = "Nigerian"},
+                         new SelectListItem { Text ="Pakistani", Value = "Pakistani"},
+                         new SelectListItem { Text ="Paraguayan", Value = "Paraguayan"},
+                         new SelectListItem { Text ="Peruvian", Value = "Peruvian"},
+                         new SelectListItem { Text ="Filipino", Value = "Filipino" },
+                         new SelectListItem { Text ="Polish", Value = "Polish"},
+                         new SelectListItem { Text ="Portuguese", Value = "Portuguese"},
+                         new SelectListItem { Text ="Romanian", Value = "Romanian"},
+                         new SelectListItem { Text ="Russian", Value = "Russian"},
+                         new SelectListItem { Text ="Arabian", Value = "Arabian"},
+                         new SelectListItem { Text ="Scottish", Value = "Scottish"},
+                         new SelectListItem { Text ="Singaporean", Value = "Singaporean"},
+                         new SelectListItem { Text ="Slovak", Value = "Slovak"},
+                         new SelectListItem { Text ="South African", Value = "South African"},
+                         new SelectListItem { Text ="Korean", Value = "Korean"},
+                         new SelectListItem { Text ="Sri Lankan", Value = "Sri Lankan"},
+                         new SelectListItem { Text ="Lebanese", Value = "Lebanese"},
+                         new SelectListItem { Text ="Swedish", Value = "Swedish"},
+
+
+                         new SelectListItem { Text ="Swiss", Value = "Swiss"},
+                         new SelectListItem { Text ="Syrian", Value = "Syrian"},
+                         new SelectListItem { Text ="Taiwanese", Value = "Taiwanese"},
+                         new SelectListItem { Text ="Tajikistani", Value = "Tajikistani"},
+                         new SelectListItem { Text ="Thai", Value = "Thai"},
+                         new SelectListItem { Text ="Turkish", Value = "Turkish"},
+                         new SelectListItem { Text ="Ukrainian", Value = "Ukrainian"},
+                         new SelectListItem { Text ="Emirati", Value = "Emirati"},
+                         new SelectListItem { Text ="British", Value = "British"},
+                         new SelectListItem { Text ="American", Value = "American "},
+                         new SelectListItem { Text ="Uruguayan", Value = "Uruguayan"},
+                         new SelectListItem { Text ="Venezuelan", Value = "Venezuelan" },
+                         new SelectListItem { Text ="Vietnamese", Value = "Vietnamese"},
+                         new SelectListItem { Text ="Zimbabwean", Value = "Zimbabwean"}
+
+                         }, "Select Citizenship", new { style = "width:20em; height: 2em;" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(model => model.NameOfMother, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.ValidationMessageFor(model => model.MotherCitizenship, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">Document Acquired by Applicant</div>
+            <div class="panel-body">
+                <br>
+
+
+                @*ROW-1*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("Citizenship Aquired By", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("Are you a holder of foreign passport?", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("If yes, What Country?", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(model => model.CitizenshipAcquiredBy, new List<SelectListItem> {
+
+                             new SelectListItem { Text ="Birth ", Value = "Birth"},
+                             new SelectListItem { Text ="Election", Value = "Election"},
+                             new SelectListItem { Text ="Marriage", Value = "Marriage"},
+                             new SelectListItem { Text ="Naturaliation", Value = "Naturaliation"},
+                             new SelectListItem { Text ="R.A 9225", Value = "R.A 9225"}
+
+
+                         }, "Select Document", new { style = "width:20em; height: 2em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.ForeignPassHolder, new List<SelectListItem> {
+
+                            new SelectListItem { Text ="Yes", Value = "Yes"},
+                            new SelectListItem { Text ="No", Value = "No"},
+
+
+                        }, "Choose", new { style = "width:20em; height: 2em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.ForeignPassport, new List<SelectListItem> {
+
+                         new SelectListItem { Text ="Afghanistan", Value = "Afghanistan"},
+                         new SelectListItem { Text ="Albania", Value = "Albania"},
+                         new SelectListItem { Text ="Algeria", Value = "Algeria"},
+                         new SelectListItem { Text ="Argentina", Value = "Argentina"},
+                         new SelectListItem { Text ="Australia", Value = "Australia"},
+                         new SelectListItem { Text ="Austria", Value = "Austria"},
+                         new SelectListItem { Text ="Bangladesh", Value = "Bangladesh"},
+                         new SelectListItem { Text ="Belgium", Value = "Belgium"},
+                         new SelectListItem { Text ="Bolivia", Value = "Bolivia"},
+                         new SelectListItem { Text ="Botswana", Value = "Botswana"},
+                         new SelectListItem { Text ="Brazil", Value = "Brazilia"},
+                         new SelectListItem { Text ="Bulgaria", Value = "Bulgaria" },
+                         new SelectListItem { Text ="Cambodia", Value = "Cambodia"},
+                         new SelectListItem { Text ="Cameroon", Value = "Cameroon"},
+                         new SelectListItem { Text ="Canada", Value = "Canada"},
+                         new SelectListItem { Text ="Chile", Value = "Chile"},
+                         new SelectListItem { Text ="China", Value = "Chinesa"},
+                         new SelectListItem { Text ="Colombia", Value = "Colombia"},
+                         new SelectListItem { Text ="Costa Rica", Value = "Costa Rica"},
+                         new SelectListItem { Text ="Croatia", Value = "Croatia"},
+                         new SelectListItem { Text ="Cuba", Value = "Cuba"},
+                         new SelectListItem { Text ="Czech Republic", Value = "Czech Republic"},
+                         new SelectListItem { Text ="Denmark", Value = "Denmark"},
+                         new SelectListItem { Text ="Dominican Republic", Value = "Dominican Republic"},
+                         new SelectListItem { Text ="Ecuador", Value = "Ecuador"},
+
+
+
+                         new SelectListItem { Text ="Egypt", Value = "Egypt"},
+                         new SelectListItem { Text ="English", Value = "English"},
+                         new SelectListItem { Text ="Finland", Value = "Finland"},
+                         new SelectListItem { Text ="France", Value = "France"},
+                         new SelectListItem { Text ="Germany", Value = "Germany"},
+                         new SelectListItem { Text ="Greece", Value = "Greece"},
+                         new SelectListItem { Text ="Guatemala", Value = "Guatemala"},
+                         new SelectListItem { Text ="Haiti", Value = "Haiti"},
+                         new SelectListItem { Text ="Hungary", Value = "Hungary"},
+                         new SelectListItem { Text ="India", Value = "India"},
+                         new SelectListItem { Text ="Indonesia", Value = "Indonesia" },
+                         new SelectListItem { Text ="Iran", Value = "Iran"},
+                         new SelectListItem { Text ="Iraq", Value = "Iraq"},
+                         new SelectListItem { Text ="Ireland", Value = "Ireland"},
+                         new SelectListItem { Text ="Israel", Value = "Israel"},
+                         new SelectListItem { Text ="Italy", Value = "Italy"},
+                         new SelectListItem { Text ="Jamaica", Value = "Jamaica"},
+                         new SelectListItem { Text ="Japan", Value = "Japan"},
+                         new SelectListItem { Text ="Jordan", Value = "Jordan"},
+                         new SelectListItem { Text ="Kenya", Value = "Kenya"},
+                         new SelectListItem { Text ="Kuwait", Value = "Kuwait"},
+                         new SelectListItem { Text ="Laos", Value = "Laos"},
+                         new SelectListItem { Text ="Lebanon", Value = "Lebanon"},
+                         new SelectListItem { Text ="Libya", Value = "Libya"},
+
+
+                         new SelectListItem { Text ="Malaysia", Value = "Malaysia"},
+                         new SelectListItem { Text ="Mexico", Value = "Mexico"},
+                         new SelectListItem { Text ="Mongolia", Value = "Mongolia"},
+                         new SelectListItem { Text ="Morocco", Value = "Morocco"},
+                         new SelectListItem { Text ="Nepal", Value = "Nepal"},
+                         new SelectListItem { Text ="Netherlands", Value = "Netherlands"},
+                         new SelectListItem { Text ="New Zealand", Value = "New Zealand"},
+                         new SelectListItem { Text ="Nigeria", Value = "Nigeria"},
+                         new SelectListItem { Text ="Pakistan", Value = "Pakistan"},
+                         new SelectListItem { Text ="Paraguay", Value = "Paraguay"},
+                         new SelectListItem { Text ="Peru", Value = "Peru"},
+                         new SelectListItem { Text ="Philippine", Value = "Philippine" },
+                         new SelectListItem { Text ="Poland", Value = "Poland"},
+                         new SelectListItem { Text ="Portugal", Value = "Portugal"},
+                         new SelectListItem { Text ="Romania", Value = "Romania"},
+                         new SelectListItem { Text ="Russia", Value = "Russia"},
+                         new SelectListItem { Text ="Saudi Arabia", Value = "Saudi Arabia"},
+                         new SelectListItem { Text ="Scotland", Value = "Scotland"},
+                         new SelectListItem { Text ="Singaporean", Value = "Singapore"},
+                         new SelectListItem { Text ="Slovakia", Value = "Slovakia"},
+                         new SelectListItem { Text ="South Africa", Value = "South Africa"},
+                         new SelectListItem { Text ="Korea", Value = "Korea"},
+                         new SelectListItem { Text ="Sri Lanka", Value = "Sri Lanka"},
+                         new SelectListItem { Text ="Sweden", Value = "Sweden"},
+
+
+                         new SelectListItem { Text ="Switzerland", Value = "Switzerland"},
+                         new SelectListItem { Text ="Syria", Value = "Syria"},
+                         new SelectListItem { Text ="Taiwan", Value = "Taiwan"},
+                         new SelectListItem { Text ="Tajikistan", Value = "Tajikistan"},
+                         new SelectListItem { Text ="Thailand", Value = "Thailand"},
+                         new SelectListItem { Text ="Turkey", Value = "Turkey"},
+                         new SelectListItem { Text ="Ukraine", Value = "Ukraine"},
+                         new SelectListItem { Text ="UAE", Value = "UAE"},
+                         new SelectListItem { Text ="UK", Value = "UK"},
+                         new SelectListItem { Text ="US", Value = "US"},
+                         new SelectListItem { Text ="Uruguay", Value = "Uruguay"},
+                         new SelectListItem { Text ="Venezuela", Value = "Venezuela" },
+                         new SelectListItem { Text ="Vietnam", Value = "Vietnam"},
+                         new SelectListItem { Text ="Zimbabwe", Value = "Zimbabwe"}
+
+
+                         }, "Enter Country", new { style = "width:20em; height: 2em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.CitizenshipAcquiredBy, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.ForeignPassHolder, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.ForeignPassport, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                @*ROW-2*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("Philippine Passport Holder?", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("If yes, Latest Passport Number?", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("Date Issued", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(model => model.PhilPassHolder, new List<SelectListItem> {
+
+                             new SelectListItem { Text ="Yes", Value = "Yes"},
+                             new SelectListItem { Text ="No", Value = "No"},
+
+
+                         }, "Choose", new { style = "width:20em; height: 2em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.LatestPhilPassNumber, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.DateIssuedPhPassNum, new { style = "width:20em;", @class = "datepicker" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.PhilPassHolder, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.LatestPhilPassNumber, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.DateIssuedPhPassNum, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" style="text-align:center">For applicants below 18 years old ONLY</div>
+            <div class="panel-body">
+                <br>
+
+
+                @*ROW-1*@
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.Label("Name of Companion", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("Companion Relationship", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Label("Contact Number", htmlAttributes: new { @class = "control-label " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(model => model.MinorTravelingCompanion, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.CompanionRelationship, new { style = "width:20em;" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.CompanionContactNum, new { style = "width:20em;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.MinorTravelingCompanion, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.CompanionRelationship, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.CompanionContactNum, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class=" col-md-10">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default " })
+            </div>
+            <div class=" col-md-2">
+                <input type="submit" value="Save record" class="btn btn-success" />
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}
